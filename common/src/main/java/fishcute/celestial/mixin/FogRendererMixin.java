@@ -18,11 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FogRenderer.class)
 public class FogRendererMixin {
-
-    @ModifyVariable(method = "setupFog", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-    private static boolean setupFog(boolean thickFog) {
-        return VersionSky.checkThickFog(thickFog);
-    }
     @Inject(method = "setupFog", at = @At("RETURN"))
     private static void setupFog(Camera camera, FogRenderer.FogMode fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo info) {
         VersionSky.setupFogStartEnd(fogType == FogRenderer.FogMode.FOG_SKY, viewDistance, thickFog);

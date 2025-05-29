@@ -210,14 +210,33 @@ public class VMinecraftInstance implements IMinecraftInstance {
         c[2] = vec.z;
         return c;
     }
-
-    public boolean disableFogChanges() {
-        return minecraft.gameRenderer.getMainCamera().getFluidInCamera() !=
-                FogType.NONE || minecraft.player.hasEffect(MobEffects.BLINDNESS);
+    public double[] getBiomeWaterFogColor() {
+        double[] c = new double[3];
+        Util.getRealFogColor = true;
+        Vec3 vec = CubicSampler.gaussianSampleVec3(minecraft.player.position(), (ix, jx, kx) -> {
+            return Vec3.fromRGB24((minecraft.level.getBiome(new BlockPos(ix, jx, kx)).value()).getWaterFogColor());
+        });
+        Util.getRealFogColor = false;
+        c[0] = vec.x;
+        c[1] = vec.y;
+        c[2] = vec.z;
+        return c;
     }
+
     public boolean isCameraInWater() {
         return minecraft.gameRenderer.getMainCamera().getFluidInCamera() == FogType.WATER;
     }
+    public boolean isCameraInLava() {
+        return minecraft.gameRenderer.getMainCamera().getFluidInCamera() == FogType.LAVA;
+    }
+    public boolean isCameraInPowderedSnow() {
+        return minecraft.gameRenderer.getMainCamera().getFluidInCamera() == FogType.POWDER_SNOW;
+    }
+    public boolean isCameraBlinded() {
+        return minecraft.player.hasEffect(MobEffects.BLINDNESS);
+    }
+
+
     public double getNightVisionModifier() {
         if (!doesPlayerExist() || !minecraft.player.hasEffect(MobEffects.NIGHT_VISION))
             return 0;

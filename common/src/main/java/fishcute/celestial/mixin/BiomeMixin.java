@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BiomeMixin {
     @Inject(method = "getFogColor", at = @At("RETURN"), cancellable = true)
     private void getFogColor(CallbackInfoReturnable<Integer> info) {
-        info.setReturnValue(VersionSky.getFogColor(info.getReturnValue(), ((VRenderSystem) Instances.renderSystem).getBiomeFogColor((Biome) (Object) this)));
+        info.setReturnValue(VersionSky.getFogColor(info.getReturnValue()));
     }
     @Inject(method = "getSkyColor", at = @At("RETURN"), cancellable = true)
     private void getSkyColor(CallbackInfoReturnable<Integer> info) {

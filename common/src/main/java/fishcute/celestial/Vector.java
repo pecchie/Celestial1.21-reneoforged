@@ -80,4 +80,7 @@ public class Vector implements IMcVector {
     public static Vec3 toVecFromArray(double[] a) {
         return new Vec3(a[0], a[1], a[2]);
     }
+    public static Vec3 toVecFromArray(float[] a) {
+        return new Vec3(a[0], a[1], a[2]);
+    }
 }
