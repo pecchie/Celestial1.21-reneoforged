@@ -23,7 +23,7 @@ public class ClientLevelMixin {
     }
     @Inject(method = "getSkyColor", at = @At("RETURN"), cancellable = true)
     private void getSkyColor(Vec3 vec3, float f, CallbackInfoReturnable<Vec3> info) {
-        double[] color = VersionSky.getClientLevelSkyColor(new double[]{info.getReturnValue().x, info.getReturnValue().y, info.getReturnValue().z});
+        float[] color = VersionSky.getClientLevelSkyColor(new float[]{(float) info.getReturnValue().x, (float) info.getReturnValue().y, (float) info.getReturnValue().z});
         info.setReturnValue(Vector.toVecFromArray(color));
     }
 }
