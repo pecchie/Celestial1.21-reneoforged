@@ -13,6 +13,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.CubicSampler;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
@@ -41,6 +42,9 @@ public class VMinecraftInstance implements IMinecraftInstance {
     }
     public float getTickDelta() {
         return minecraft.getTimer().getGameTimeDeltaTicks();
+    }
+    public long getMillis() {
+        return net.minecraft.Util.getMillis();
     }
     public Vector getPlayerEyePosition() {
         return Vector.fromVec(minecraft.player.getEyePosition(getTickDelta()));
@@ -221,6 +225,15 @@ public class VMinecraftInstance implements IMinecraftInstance {
         c[1] = vec.y;
         c[2] = vec.z;
         return c;
+    }
+
+    public float getWaterVision() {
+        return minecraft.player.getWaterVision();
+    }
+
+    public boolean doesBiomeHaveCloserFog() {
+        Holder<Biome> holder = minecraft.player.level().getBiome(minecraft.player.blockPosition());
+        return holder.is(BiomeTags.HAS_CLOSER_WATER_FOG);
     }
 
     public boolean isCameraInWater() {
