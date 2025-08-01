@@ -214,6 +214,7 @@ public class VMinecraftInstance implements IMinecraftInstance {
         c[2] = vec.z;
         return c;
     }
+
     public double[] getBiomeWaterFogColor() {
         double[] c = new double[3];
         Util.getRealFogColor = true;
