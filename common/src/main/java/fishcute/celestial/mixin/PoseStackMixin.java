@@ -8,6 +8,6 @@ import java.util.Deque;
 
 @Mixin(PoseStack.class)
 public interface PoseStackMixin {
-    @Accessor
-    Deque<PoseStack.Pose> getPoseStack();
+    @Accessor("poses")
+    Collection<PoseStack.Pose> getPoseStack();
 }
