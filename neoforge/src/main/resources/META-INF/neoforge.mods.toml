@@ -8,7 +8,7 @@ version="${version}"
 displayName="Celestial"
 displayURL="https://github.com/fishcute/Celestial"
 logoFile="icon.png"
-authors="fishcute, block36_"
+authors="fishcute, block36_, NPCpecchie"
 [[mixins]]
 config="celestial.mixins.json"
 description='''
